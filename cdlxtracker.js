@@ -3257,19 +3257,7 @@ if (typeof window.Cdlx !== 'object') {
     }
 
     if (!window.Cdlx.getAsyncTrackers().length) {
-        if (hascdlxmainConfiguration()) {
             window.Cdlx.addTracker();
-        } else {
-            _cdlxmain = {
-                push: function (args) {
-                    // needed to write it this way for jslint
-                    var consoleType = typeof console;
-                    if (consoleType !== 'undefined' && console && console.error) {
-                        console.error('_cdlxmain.push() was used but Matomo tracker was not initialized before the matomo.js file was loaded. Make sure to configure the tracker via _cdlxmain.push before loading matomo.js. Alternatively, you can create a tracker via Matomo.addTracker() manually and then use _cdlxmain.push but it may not fully work as tracker methods may not be executed in the correct order.', args);
-                    }
-                }
-            };
-        }
     }
     window.Cdlx.trigger('PiwikInitialized', []);
     window.Cdlx.initialized = true;
